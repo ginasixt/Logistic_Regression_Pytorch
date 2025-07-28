@@ -63,14 +63,21 @@ optimizer = optim.SGD(model.parameters(), lr=0.01)
 # 3)Alte Gradienten löschen
 # 4) Neue Gradienten berechnen
 # 5) Gewichte anpassen
-for epoch in range(1000): # Training for 1000 epochs/ iterations of whole dataset
-    model.train() # Set the model to training mode
-    outputs = model(X_train) # Forward pass (forward(self, x)): compute predicted outputs by passing inputs to the model
-    loss = criterion(outputs, y_train) # Calculate the loss using Binary Cross Entropy Loss (BCELoss) between predicted outputs and true labels.
-    optimizer.zero_grad() # .backward() sums the gradients, so we need to zero them out before the next iteration
+# Training for 1000 epochs/ iterations of whole dataset
+for epoch in range(1000):
+    # Set the model to training mode
+    model.train()
+    # Forward pass (forward(self, x)): compute predicted outputs by passing inputs to the model
+    outputs = model(X_train) 
+     # Calculate the loss using Binary Cross Entropy Loss (BCELoss) between predicted outputs and true labels.
+    loss = criterion(outputs, y_train)
+     # .backward() sums the gradients, so we need to zero them out before the next iteration
+    optimizer.zero_grad()
     # the gradient is the Richtungszeicher, wie das Gewicht verändert werden soll. (wie Gewicht verändert werden soll, dass Loss geniger wird)
-    loss.backward() # Backward pass: compute gradient of the loss with respect to model parameters
-    optimizer.step() # Update model parameters based on gradients (Paramter Update) with the Gradient Descent Update Rule
+    # Backward pass: compute gradient of the loss with respect to model parameters
+    loss.backward() 
+    # Update model parameters based on gradients (Paramter Update) with the Gradient Descent Update Rule
+    optimizer.step() 
     
     # Print loss every 100 iterations
     if epoch % 100 == 0:
